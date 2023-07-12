@@ -1,6 +1,7 @@
 package com.devsuperior.bds02.controllers;
 
 import com.devsuperior.bds02.dto.CityDTO;
+import com.devsuperior.bds02.entities.City;
 import com.devsuperior.bds02.servico.CityServico;
 import com.fasterxml.jackson.databind.annotation.NoClass;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -33,6 +36,15 @@ public class CityController {
     public ResponseEntity<Void> del(@PathVariable Long id){
         servico.del(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping
+    public ResponseEntity<CityDTO> cadastro(@RequestBody CityDTO dto, UriComponentsBuilder builder){
+        dto = servico.cadastro(dto);
+
+        URI uri = builder.path("/cities/{id}").buildAndExpand(dto.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(dto);
     }
 
 }

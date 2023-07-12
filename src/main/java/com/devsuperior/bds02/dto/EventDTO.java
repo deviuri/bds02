@@ -2,6 +2,7 @@ package com.devsuperior.bds02.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Optional;
 
 import com.devsuperior.bds02.entities.Event;
 
@@ -33,7 +34,7 @@ public class EventDTO implements Serializable {
 		cityId = entity.getCity().getId();
 	}
 
-	public Long getId() {
+    public Long getId() {
 		return id;
 	}
 

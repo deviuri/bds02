@@ -40,5 +40,13 @@ public class CityServico {
         }
     }
 
+    public CityDTO cadastro(CityDTO dto){
+        City city = new City();
+        city.setName(dto.getName());
+        rep.save(city);
+
+        return new CityDTO(city);
+    }
+
 
 }
