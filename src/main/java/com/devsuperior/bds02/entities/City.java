@@ -30,6 +30,14 @@ public class City {
 		this.name = name;
 	}
 
+	public City(Long id, String name, List<Event> event) {
+		this.id = id;
+		this.name = name;
+		this.events.forEach(x -> {
+			events.add(x);
+		});
+	}
+
 	public Long getId() {
 		return id;
 	}
